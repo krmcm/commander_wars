@@ -37,58 +37,6 @@ jobs:
       matrix:
         buildTarget: [windows-desktop, windows-server, ubuntu-desktop, ubuntu-server, macos-desktop, android-armv7, android-arm64_v8a]
         include:
-          - buildTarget: windows-desktop
-            os: windows-latest
-            COMPILER_VERSION: 'win64_mingw'
-            target: 'desktop'
-            qtPath: 'mingw_64'
-            qtTools: 'tools_mingw1310'
-            installerCommands1: choco install openssl --force -y --install-arguments="'/DIR=C:/openSsl/'"
-            installerCommands2: ''
-            source_asset: 'Commander_Wars.zip'
-            asset_file: 'Commander_Wars-Win10_x64'
-            asset_name: 'Commander_Wars-Win10_x64-${{github.ref_name}}.zip'
-            cmakeOptions: '"-DCMAKE_GENERATOR:STRING=MinGW Makefiles" -DOPENSSL_LIB_PATH="C:/openSsl/bin" -DOPENSSL_INCLUDE_DIR="C:/openSsl/include" -DOPENSSL_USE_STATIC_LIBS="ON" -DPRECOMPILEDOPENSSL="ON" "-DCMAKE_C_COMPILER:FILEPATH=D:/a/Commander_Wars/Commander_Wars/qt/Qt/Tools/mingw1310_64/bin/gcc.exe" "-DCMAKE_CXX_COMPILER:FILEPATH=D:/a/Commander_Wars/Commander_Wars/qt/Qt/Tools/mingw1310_64/bin/g++.exe"'
-          - buildTarget: windows-server
-            os: windows-latest
-            COMPILER_VERSION: 'win64_mingw'
-            target: 'desktop'
-            qtPath: 'mingw_64'
-            qtTools: 'tools_mingw1310'
-            installerCommands1: choco install openssl --force -y --install-arguments="'/DIR=C:/openSsl/'"
-            installerCommands2: ''
-            source_asset: 'Commander_Wars.zip'
-            asset_file: 'Commander_Wars_Dedicated_Server-Win10_x64'
-            asset_name: 'Commander_Wars_Dedicated_Server-Win10_x64-${{github.ref_name}}.zip'
-            cmakeOptions: '"-DCMAKE_GENERATOR:STRING=MinGW Makefiles" -DOPENSSL_LIB_PATH="C:/openSsl/bin" -DOPENSSL_INCLUDE_DIR="C:/openSsl/include" -DOPENSSL_USE_STATIC_LIBS="ON" -DPRECOMPILEDOPENSSL="ON" -DGRAPHICSUPPORT=OFF -DAUDIOSUPPORT=OFF -DUPDATESUPPORT=OFF "-DCMAKE_C_COMPILER:FILEPATH=D:/a/Commander_Wars/Commander_Wars/qt/Qt/Tools/mingw1310_64/bin/gcc.exe" "-DCMAKE_CXX_COMPILER:FILEPATH=D:/a/Commander_Wars/Commander_Wars/qt/Qt/Tools/mingw1310_64/bin/g++.exe"'
-          - buildTarget: ubuntu-desktop
-            os: ubuntu-latest
-            COMPILER_VERSION: ''
-            target: 'desktop'
-            qtPath: ''
-            qtTools: ''
-            installerCommands1: 'sudo apt-get update'
-            installerCommands2: 'sudo apt-get install libxcb-cursor0 libfuse2 gstreamer1.0-plugins-base gstreamer1.0-plugins-good gstreamer1.0-libav gstreamer1.0-tools gstreamer1.0-x gstreamer1.0-alsa gstreamer1.0-gl gstreamer1.0-gtk3 gstreamer1.0-qt5 gstreamer1.0-pulseaudio'
-            source_asset: 'Commander_Wars-x86_64.AppImage'
-            asset_file: 'Commander_Wars-Linux_x64'
-            asset_name: 'Commander_Wars-Linux_x64-${{github.ref_name}}.AppImage'
-            cmakeOptions: ' -DOPENSSL_USE_STATIC_LIBS=FALSE'
-            serverFlag: ''
-            linuxFlag: 'linux'
-          - buildTarget: ubuntu-server
-            os: ubuntu-latest
-            COMPILER_VERSION: ''
-            target: 'desktop'
-            qtPath: ''
-            qtTools: ''
-            installerCommands1: 'sudo apt-get update'
-            installerCommands2: 'sudo apt-get install libxcb-cursor0 libfuse2 gstreamer1.0-plugins-base gstreamer1.0-plugins-good gstreamer1.0-libav gstreamer1.0-tools gstreamer1.0-x gstreamer1.0-alsa gstreamer1.0-gl gstreamer1.0-gtk3 gstreamer1.0-qt5 gstreamer1.0-pulseaudio'
-            source_asset: 'Commander_Wars_Dedicated_Server-x86_64.AppImage'
-            asset_file: 'Commander_Wars_Dedicated_Server-Linux_x64'
-            asset_name: 'Commander_Wars_Dedicated_Server-Linux_x64-${{github.ref_name}}.AppImage'
-            cmakeOptions: '-DGRAPHICSUPPORT=OFF -DAUDIOSUPPORT=OFF -DUPDATESUPPORT=OFF -DOPENSSL_USE_STATIC_LIBS=FALSE'
-            serverFlag: '-server'
-            linuxFlag: 'linux'
           - buildTarget: macos-desktop
             os: macos-latest
             COMPILER_VERSION: 'clang_64'
@@ -101,40 +49,6 @@ jobs:
             asset_file: 'Commander_Wars-macOS'
             asset_name: 'Commander_Wars-macOS-${{github.ref_name}}.zip'
             cmakeOptions: '-DOPENSSL_ROOT_DIR=/usr/local/opt/openssl -DCMAKE_OSX_ARCHITECTURES="x86_64;arm64"'
-          - buildTarget: android-armv7
-            os: windows-latest
-            COMPILER_VERSION: 'android_armv7'
-            qtPath: 'android_armv7'
-            qtTools: ''
-            target: 'android'
-            target-api-level: '23'
-            abi : "armeabi-v7a"
-            COMPILER_TOOLS_VERSION: 'win64_mingw'
-            qtCoreToolsPath: 'mingw_64'
-            installerCommands1: 'choco install ninja'
-            installerCommands2: ''
-            source_asset: 'android-build/build/outputs/apk/release/android-build-release-signed.apk'
-            asset_file: 'Commander_Wars-Android_armeabi_v7a'
-            asset_name: 'Commander_Wars-Android_armeabi_v7a-${{github.ref_name}}.apk'
-            cmakeOptions: ''
-            openSslabiPath: 'android_openssl/ssl_3/armeabi-v7a'            
-          - buildTarget: android-arm64_v8a
-            os: windows-latest
-            COMPILER_VERSION: 'android_arm64_v8a'
-            qtPath: 'android_arm64_v8a'
-            qtTools: ''
-            target: 'android'
-            target-api-level: '23'
-            abi : "arm64-v8a"
-            COMPILER_TOOLS_VERSION: 'win64_mingw'
-            qtCoreToolsPath: 'mingw_64'
-            installerCommands1: 'choco install ninja'
-            installerCommands2: ''
-            source_asset: 'android-build/build/outputs/apk/release/android-build-release-signed.apk'
-            asset_file: 'Commander_Wars-Android_arm64_v8a'
-            asset_name: 'Commander_Wars-Android_arm64_v8a-${{github.ref_name}}.apk'
-            cmakeOptions: ''
-            openSslabiPath: 'android_openssl/ssl_3/arm64-v8a'
 
     needs: create_release
     
