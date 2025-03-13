@@ -43,7 +43,7 @@ jobs:
             qtPath: 'clang_64'
             qtTools: ''
             target: 'desktop'
-            installerCommands1: ''
+            installerCommands1: 'brew uninstall --ignore-dependencies openssl || true && arch -x86_64 brew install openssl && arch -arm64 brew install openssl'
             installerCommands2: ''
             source_asset: 'Commander_Wars.zip'
             asset_file: 'Commander_Wars-macOS'
