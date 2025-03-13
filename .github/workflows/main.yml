@@ -100,7 +100,7 @@ jobs:
             source_asset: 'Commander_Wars.zip'
             asset_file: 'Commander_Wars-macOS'
             asset_name: 'Commander_Wars-macOS-${{github.ref_name}}.zip'
-            cmakeOptions: '-DOPENSSL_ROOT_DIR=/usr/local/opt/openssl'
+            cmakeOptions: '-DOPENSSL_ROOT_DIR=/usr/local/opt/openssl -DCMAKE_OSX_ARCHITECTURES="x86_64;arm64"'
           - buildTarget: android-armv7
             os: windows-latest
             COMPILER_VERSION: 'android_armv7'
